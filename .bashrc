@@ -116,16 +116,18 @@ export EDITOR="vim"
 complete -f -X '!*.@(pdf|PDF)' evince
 complete -f -X '!*.@(mp4|MP4|avi|AVI|mkv|MKV|wmv|WMV|m4v|M4V|flv|FLV)' vlc
 
-# Run gdb of given program with given program and parameters
+# Run cgdb/gdb of given program with given program and parameters
 debug() {
-    gdb -ex 'b main' \
+    GDB=`command -v cgdb >/dev/null && echo 'cgdb' || echo 'gdb'`
+    $GDB -ex 'b main' \
         -ex 'run' \
         --args "$@"
 }
 
-# Run program under gdb and just print stack backtrace
+# Run program under cgdb/gdb and just print stack backtrace
 backtrace() {
-    gdb -batch \
+    GDB=`command -v cgdb >/dev/null && echo 'cgdb' || echo 'gdb'`
+    $GDB -batch \
         -ex 'handle SIG33 pass nostop noprint' \
         -ex 'run' \
         -ex 'backtrace full' \
@@ -140,3 +142,6 @@ alias xd="xxd -g1"
 leaks() {
     valgrind --tool=memcheck --leak-check=full --show-reachable=yes "$@"
 }
+
+# Copy to clipboard from terminal
+alias copy="xclip -selection clipboard"

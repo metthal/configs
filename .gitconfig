@@ -1,0 +1,19 @@
+[core]
+	editor = vim
+[alias]
+	lg = log --graph --pretty=format:'%C(bold red)%h%Creset -%Creset %s %C(bold green)(%cd - %cr) %C(bold blue)<%an> %C(bold yellow)%d' --abbrev-commit --date=short
+	rep = log --graph --pretty=format:'%C(bold red)%h%Creset -%Creset %s %C(bold green)(%cd - %cr) %C(bold blue)<%an> %C(bold yellow)%d' --abbrev-commit --date=short \
+		--since=\"2 weeks ago\" --author=\"Marek Milkovič\"
+	co = commit
+	ch = checkout
+	st = status
+	chp = checkout -p
+	ap = add -p
+	undo = reset HEAD^
+[push]
+	default = simple
+[merge]
+	tool = vimdiff
+[user]
+	name = Marek Milkovič
+	email = milkovic.marek@gmail.com

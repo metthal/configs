@@ -72,6 +72,9 @@ set noswapfile
 " Improve loading speeds
 set ttyfast
 
+" Do not wrap lines
+set nowrap
+
 " Tab & indent settings
 set tabstop=4
 set softtabstop=4
@@ -81,6 +84,9 @@ set smartindent
 
 "set expandtab " Use spaces
 set noexpandtab " Use tabs
+
+" NASM syntax for .asm files
+autocmd BufNewFile,BufRead *.asm set filetype=nasm
 
 " Alternative navigations between tabs
 " Move to the left tab
@@ -98,6 +104,11 @@ noremap <C-p> p`[V`]y
 " Page Up & Page Down keybindings
 noremap <C-Down> <PageDown>
 noremap <C-Up> <PageUp>
+
+" Deleting the context of {}, () and ""
+onoremap { i{
+onoremap ( i(
+onoremap " i"
 
 " Show trailing whitespaces and tabs
 set list
