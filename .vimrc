@@ -12,17 +12,16 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-" My plugins
-" Command-T - better file navigation
-Plugin 'wincent/Command-T'
-
 " vim-airline - better status line
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
+
+" vim-airline-themes - themes for vim-airline
+Plugin 'vim-airline/vim-airline-themes'
 
 " YouCompleteMe - code completion
 Plugin 'Valloric/YouCompleteMe'
 
-" vim-figitive - git integration
+" vim-fugitive - git integration
 Plugin 'tpope/vim-fugitive'
 
 " vim-gitgutter - show changes on the left seft next to line numbers
