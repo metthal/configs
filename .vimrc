@@ -84,8 +84,18 @@ set smartindent
 "set expandtab " Use spaces
 set noexpandtab " Use tabs
 
-" NASM syntax for .asm files
+" Spelling check
+set spell
+set spelllang=en_us,en_gb " English
+"set spelllang=sk " Slovak
+
+" Just underline when spelling error is found
+hi clear SpellBad
+hi SpellBad cterm=underline
+
+" NASM syntax for .asm and .inc files
 autocmd BufNewFile,BufRead *.asm set filetype=nasm
+autocmd BufNewFile,BufRead *.inc set filetype=nasm
 
 " Alternative navigations between tabs
 " Move to the left tab
@@ -100,7 +110,7 @@ vnoremap > >gv
 " Paste and copy pasted text again
 noremap <C-p> p`[V`]y
 
-" Page Up & Page Down keybindings
+" Page Up & Page Down key bindings
 noremap <C-Down> <PageDown>
 noremap <C-Up> <PageUp>
 

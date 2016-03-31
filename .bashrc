@@ -118,7 +118,9 @@ complete -f -X '!*.@(mp4|MP4|avi|AVI|mkv|MKV|wmv|WMV|m4v|M4V|flv|FLV)' vlc
 
 # Run cgdb/gdb of given program with given program and parameters
 debug() {
-    GDB=`command -v cgdb >/dev/null && echo 'cgdb' || echo 'gdb'`
+    if [ -z $GDB ]; then
+        GDB=`command -v cgdb >/dev/null && echo 'cgdb' || echo 'gdb'`
+    fi
     $GDB -ex 'b main' \
         -ex 'run' \
         --args "$@"
@@ -126,8 +128,7 @@ debug() {
 
 # Run program under cgdb/gdb and just print stack backtrace
 backtrace() {
-    GDB=`command -v cgdb >/dev/null && echo 'cgdb' || echo 'gdb'`
-    $GDB -batch \
+    gdb -batch \
         -ex 'handle SIG33 pass nostop noprint' \
         -ex 'run' \
         -ex 'backtrace full' \
