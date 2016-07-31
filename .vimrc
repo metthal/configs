@@ -59,6 +59,22 @@ colorscheme badwolf
 " Always show line numbers
 set number
 
+" Relative line numbers
+function! NumberToggle()
+	if (&relativenumber == 1)
+		set norelativenumber
+	else
+		set relativenumber
+	endif
+endfunc
+
+" Switch to relative line numbers when in insert mode
+autocmd InsertEnter * :set relativenumber
+autocmd InsertLeave * :set norelativenumber
+
+" Manual switch if we need it
+nnoremap <C-m> :call NumberToggle()<cr>
+
 " Shorten timeout when leaving insert mode
 set timeoutlen=50
 
@@ -114,9 +130,10 @@ noremap <C-p> p`[V`]y
 noremap <C-Down> <PageDown>
 noremap <C-Up> <PageUp>
 
-" Deleting the context of {}, () and ""
+" Deleting the context of {}, (), [] and ""
 onoremap { i{
 onoremap ( i(
+onoremap [ i[
 onoremap " i"
 
 " Show trailing whitespaces and tabs

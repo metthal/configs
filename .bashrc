@@ -102,6 +102,9 @@ extract() {
     esac
 }
 
+# Turn off bell
+set bell-style none
+
 # Colored man pages using 'most'
 export PAGER="most -s"
 
@@ -142,6 +145,17 @@ alias xd="xxd -g1"
 # Valgrind for memory leaks
 leaks() {
     valgrind --tool=memcheck --leak-check=full --show-reachable=yes "$@"
+}
+
+# Valgrind for gdb debugging
+leaksdebug() {
+	valgrind --vgdb=yes --vgdb-error=0 "$@"
+}
+
+# gdb for valgrind debugging
+debugleaks() {
+	gdb -ex 'target remote | vgdb' \
+		--args "$@"
 }
 
 # Copy to clipboard from terminal
