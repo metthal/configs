@@ -83,7 +83,7 @@ shopt -s lithist
 shopt -s globstar
 
 # Universal extractor
-complete -f -X '!*.@(tar.gz|tgz|tar.bz2|tbz2|xz|tar|zip|rar)' extract
+complete -f -X '!*.@(tar.gz|tgz|tar.bz2|tbz2|xz|tar|zip|rar|7z)' extract
 extract() {
     if [ ! -r $1 ]; then
         echo "File '$1' not found" >&2
@@ -98,6 +98,7 @@ extract() {
         *.tar)      tar -xvf $1     ;;
         *.zip)      unzip $1        ;;
         *.rar)      unrar x $1      ;;
+        *.7z)       7za x $1        ;;
         *)          echo "Invalid file format" >&2  ;;
     esac
 }
