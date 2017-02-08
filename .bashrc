@@ -83,7 +83,7 @@ shopt -s lithist
 shopt -s globstar
 
 # Universal extractor
-complete -f -X '!*.@(tar.gz|tgz|tar.bz2|tbz2|xz|tar|zip|rar|7z)' extract
+complete -f -X '!*.@(tar.gz|tgz|tar.bz2|tbz2|xz|tar|zip|rar|7z|bz2)' extract
 extract() {
     if [ ! -r $1 ]; then
         echo "File '$1' not found" >&2
@@ -99,6 +99,7 @@ extract() {
         *.zip)      unzip $1        ;;
         *.rar)      unrar x $1      ;;
         *.7z)       7za x $1        ;;
+        *.bz2)      bunzip2 -vk $1  ;;
         *)          echo "Invalid file format" >&2  ;;
     esac
 }
@@ -117,7 +118,7 @@ export HISTFILESIZE=20000
 export EDITOR="vim"
 
 # Auto-completion of file formats
-complete -f -X '!*.@(pdf|PDF)' evince
+complete -f -X '!*.@(pdf|PDF)' qpdfview
 complete -f -X '!*.@(mp4|MP4|avi|AVI|mkv|MKV|wmv|WMV|m4v|M4V|flv|FLV)' vlc
 
 # Run cgdb/gdb of given program with given program and parameters
@@ -146,6 +147,11 @@ alias xd="xxd -g1"
 # Valgrind for memory leaks
 leaks() {
     valgrind --tool=memcheck --leak-check=full --show-reachable=yes "$@"
+}
+
+# Valgrind for invalid memory accesses
+memcheck() {
+	valgrind --tool=memcheck "$@"
 }
 
 # Valgrind for gdb debugging
