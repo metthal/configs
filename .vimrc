@@ -36,6 +36,12 @@ Plugin 'jistr/vim-nerdtree-tabs'
 " NERDTree Dir Enter - fixes opening of folders when 'open in tab' is used
 Plugin 'Nopik/vim-nerdtree-direnter'
 
+" RetDec DSM Syntax Highlight
+Plugin 's3rvac/vim-syntax-retdecdsm'
+
+" Redmine Wiki Syntax Highlight
+Plugin 's3rvac/vim-syntax-redminewiki'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -112,6 +118,15 @@ hi SpellBad cterm=underline
 " NASM syntax for .asm and .inc files
 autocmd BufNewFile,BufRead *.asm set filetype=nasm
 autocmd BufNewFile,BufRead *.inc set filetype=nasm
+
+" LLVM syntax for .ll files
+autocmd BufNewFile,BufRead *.ll set filetype=llvm
+
+" RetDec DSM syntax for .dsm files
+autocmd BufNewFile,BufRead *.dsm set filetype=retdecdsm
+
+" Redmine Wiki syntax for .redmine files
+autocmd BufNewFile,BufRead *.redmine set filetype=redminewiki
 
 " Alternative navigations between tabs
 " Move to the left tab
