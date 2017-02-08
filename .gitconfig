@@ -10,10 +10,12 @@
 	chp = checkout -p
 	ap = add -p
 	undo = reset HEAD^
+	unstage = reset HEAD
 [push]
 	default = simple
 [merge]
 	tool = vimdiff
+	renamelimit = 32000
 [user]
 	name = Marek Milkovič
 	email = milkovic.marek@gmail.com
