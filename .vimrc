@@ -30,11 +30,8 @@ Plugin 'airblade/vim-gitgutter'
 " NERDTree - whole directory structure
 Plugin 'scrooloose/nerdtree'
 
-" NERDTreeTabs - improvement of NERDTree to work with tabs
-Plugin 'jistr/vim-nerdtree-tabs'
-
-" NERDTree Dir Enter - fixes opening of folders when 'open in tab' is used
-Plugin 'Nopik/vim-nerdtree-direnter'
+" Command-T - fuzzy opening of files
+Plugin 'wincent/command-t'
 
 " RetDec DSM Syntax Highlight
 Plugin 's3rvac/vim-syntax-retdecdsm'
@@ -103,6 +100,9 @@ set shiftwidth=4
 set smarttab
 set smartindent
 
+" Allow switching between buffers when changes are unsaved
+set hidden
+
 "set expandtab " Use spaces
 set noexpandtab " Use tabs
 
@@ -128,11 +128,11 @@ autocmd BufNewFile,BufRead *.dsm set filetype=retdecdsm
 " Redmine Wiki syntax for .redmine files
 autocmd BufNewFile,BufRead *.redmine set filetype=redminewiki
 
-" Alternative navigations between tabs
-" Move to the left tab
-noremap <C-Left> :tabprev<CR>
-" Move to the right tab
-noremap <C-Right> :tabnext<CR>
+" Alternative navigations between buffers
+" Move to the left buffer
+noremap <C-Left> :bprev<CR>
+" Move to the right buffer
+noremap <C-Right> :bnext<CR>
 
 " Stay in visual mode after indentation and keep selection
 vnoremap < <gv
@@ -189,13 +189,13 @@ if !exists('g:airline_symbols')
 endif
 let g:airline_symbols.space = "\ua0"
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_buffers = 0
+let g:airline#extensions#tabline#show_buffers = 1
 let g:airline_theme = 'powerlineish'
 
 " Command-T settings
 nnoremap <C-f> :CommandT<CR>
 nnoremap <C-b> :CommandTBuffer<CR>
-let g:CommandTAcceptSelectionCommand = 'tabe'
+set wildignore+=*/build/*,*/.git/*,*.o
 let g:CommandTMaxCachedDirectories = 0
 let g:CommandTMaxHeight = 15
 let g:CommandTTraverseSCM = "pwd"
@@ -204,7 +204,7 @@ let g:CommandTTraverseSCM = "pwd"
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_error_symbol = '>>'
 let g:ycm_warning_symbol = '!!'
-let g:ycm_goto_buffer_command = 'new-tab'
+"let g:ycm_goto_buffer_command = 'new-tab'
 let g:ycm_always_populate_location_list = 1
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 hi YcmErrorSign cterm=bold ctermfg=160
@@ -214,6 +214,10 @@ nnoremap <F2> :YcmCompleter GoToDeclaration<CR>
 " vim-fugitive bindings
 noremap <C-l> :Gblame<CR>
 noremap <C-d> :Gdiff<CR>
+execute "set <M-n>=\en"
+execute "set <M-m>=\em"
+noremap <M-m> :cnext<CR>
+noremap <M-n> :cprev<CR>
 
 " vim-gitgutter symbols and colors
 let g:gitgutter_sign_added = '++'
@@ -227,5 +231,5 @@ hi GitGutterDelete cterm=bold ctermfg=160
 hi GitGutterChangeDelete cterm=bold ctermfg=202
 
 " NERDTree settings
-nnoremap <C-e> :NERDTreeTabsToggle<CR>
-let g:NERDTreeMapOpenInTab = '<Enter>'
+nnoremap <C-e> :NERDTreeToggle<CR>
+let g:NERDTreeMapActivateNode = '<Enter>'

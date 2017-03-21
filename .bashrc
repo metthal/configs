@@ -54,9 +54,6 @@ export LS_COLORS="di=${Bold};${Blue}:ex=${Bold};${Green}:${LS_ARCHIVE_COLORS}"
 # Better directory listings
 alias la="ls -lAh --group-directories-first"
 
-# Always run vim as it is loading files for tabs
-alias vim="vim -p"
-
 # Table of mounted partitions
 alias lmnt="mount | column -t"
 
