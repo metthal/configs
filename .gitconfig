@@ -3,14 +3,15 @@
 [alias]
 	lg = log --graph --pretty=format:'%C(bold red)%h%Creset -%Creset %s %C(bold green)(%cd - %cr) %C(bold blue)<%an> %C(bold yellow)%d' --abbrev-commit --date=short
 	rep = log --all --graph --pretty=format:'%C(bold red)%h%Creset -%Creset %s %C(bold green)(%cd - %cr) %C(bold blue)<%an> %C(bold yellow)%d' --abbrev-commit --date=short \
-		--since=\"2 weeks ago\" --author=\"Marek Milkovič\"
-	co = commit
+		--since=\"1 week ago\" --author=\"Marek Milkovič\"
+	co = commit -v
 	ch = checkout
 	st = status
 	chp = checkout -p
 	ap = add -p
 	undo = reset HEAD^
 	unstage = reset HEAD
+	push = push --recurse-submodules=check
 [push]
 	default = simple
 [merge]

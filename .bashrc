@@ -143,7 +143,7 @@ alias xd="xxd -g1"
 
 # Valgrind for memory leaks
 leaks() {
-    valgrind --tool=memcheck --leak-check=full --show-reachable=yes "$@"
+    valgrind --tool=memcheck --leak-check=full "$@"
 }
 
 # Valgrind for invalid memory accesses

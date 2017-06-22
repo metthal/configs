@@ -24,7 +24,7 @@ Plugin 'Valloric/YouCompleteMe'
 " vim-fugitive - git integration
 Plugin 'tpope/vim-fugitive'
 
-" vim-gitgutter - show changes on the left seft next to line numbers
+" vim-gitgutter - show changes on the left next to line numbers
 Plugin 'airblade/vim-gitgutter'
 
 " NERDTree - whole directory structure
@@ -32,6 +32,12 @@ Plugin 'scrooloose/nerdtree'
 
 " Command-T - fuzzy opening of files
 Plugin 'wincent/command-t'
+
+" vim-grepper - integration with searching in files
+Plugin 'mhinz/vim-grepper'
+
+" QFEnter - navigation in quickfix window
+Plugin 'yssl/QFEnter'
 
 " RetDec DSM Syntax Highlight
 Plugin 's3rvac/vim-syntax-retdecdsm'
@@ -79,7 +85,7 @@ autocmd InsertLeave * :set norelativenumber
 nnoremap <C-m> :call NumberToggle()<cr>
 
 " Shorten timeout when leaving insert mode
-set timeoutlen=50
+set timeoutlen=1000 ttimeoutlen=50
 
 " Always show status line
 set laststatus=2
@@ -127,6 +133,9 @@ autocmd BufNewFile,BufRead *.dsm set filetype=retdecdsm
 
 " Redmine Wiki syntax for .redmine files
 autocmd BufNewFile,BufRead *.redmine set filetype=redminewiki
+
+" No spell checking in quickfix window
+autocmd FileType qf set nospell
 
 " Alternative navigations between buffers
 " Move to the left buffer
@@ -195,7 +204,7 @@ let g:airline_theme = 'powerlineish'
 " Command-T settings
 nnoremap <C-f> :CommandT<CR>
 nnoremap <C-b> :CommandTBuffer<CR>
-set wildignore+=*/build/*,*/.git/*,*.o
+set wildignore+=*/build/*,*/.git/*,*.o,*/doc/*
 let g:CommandTMaxCachedDirectories = 0
 let g:CommandTMaxHeight = 15
 let g:CommandTTraverseSCM = "pwd"
@@ -233,3 +242,15 @@ hi GitGutterChangeDelete cterm=bold ctermfg=202
 " NERDTree settings
 nnoremap <C-e> :NERDTreeToggle<CR>
 let g:NERDTreeMapActivateNode = '<Enter>'
+
+" vim-grepper settings
+let g:grepper = {}
+let g:grepper.quickfix = 1
+let g:grepper.highlight = 1
+nnoremap <Leader>/ :Grepper<CR>
+nnoremap <Leader>c :Grepper -cword -noprompt<CR>
+
+" QFEnter settings
+let g:qfenter_keymap = {}
+let g:qfenter_keymap.open = [ '<CR>' ]
+let g:qfenter_keymap.open_keep = [ '<Leader><CR>' ]
