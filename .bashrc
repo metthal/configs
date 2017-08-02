@@ -45,7 +45,7 @@ source ~/git-prompt.sh
 
 # Custom shell prompt (red for root, green for other users)
 if [[ $EUID -eq 0 ]]; then
-	PS1="${CBoldRed}\$?${CBoldYellow}\$(__git_ps1) ${CBoldRed}\u ${CBoldCyan}[\w]${CDefault}$ "
+	PS1="${CBoldRed}\$?${CBoldYellow}\$(__git_ps1) ${CBoldRed}\u ${CBoldCyan}[\w]${CDefault}# "
 else
 	PS1="${CBoldRed}\$?${CBoldYellow}\$(__git_ps1) ${CBoldGreen}\u ${CBoldCyan}[\w]${CDefault}$ "
 fi
