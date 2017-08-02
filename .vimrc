@@ -45,6 +45,9 @@ Plugin 's3rvac/vim-syntax-retdecdsm'
 " Redmine Wiki Syntax Highlight
 Plugin 's3rvac/vim-syntax-redminewiki'
 
+" badwolf color scheme
+Plugin 'sjl/badwolf'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -204,7 +207,7 @@ let g:airline_theme = 'powerlineish'
 " Command-T settings
 nnoremap <C-f> :CommandT<CR>
 nnoremap <C-b> :CommandTBuffer<CR>
-set wildignore+=*/build/*,*/.git/*,*.o,*/doc/*
+set wildignore+=*/build/*,*/.git/*,*.o,*/doc/*,*/unused/*
 let g:CommandTMaxCachedDirectories = 0
 let g:CommandTMaxHeight = 15
 let g:CommandTTraverseSCM = "pwd"
@@ -219,6 +222,7 @@ let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 hi YcmErrorSign cterm=bold ctermfg=160
 hi YcmWarningSign cterm=bold ctermfg=226
 nnoremap <F2> :YcmCompleter GoToDeclaration<CR>
+nnoremap <F3> :YcmCompleter GoToDefinition<CR>
 
 " vim-fugitive bindings
 noremap <C-l> :Gblame<CR>
