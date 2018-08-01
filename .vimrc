@@ -27,6 +27,9 @@ Plugin 'vim-airline/vim-airline-themes'
 " YouCompleteMe - code completion
 Plugin 'Valloric/YouCompleteMe'
 
+" YCM_Generator
+Plugin 'rdnetto/YCM-Generator'
+
 " vim-fugitive - git integration
 Plugin 'tpope/vim-fugitive'
 
@@ -50,6 +53,9 @@ Plugin 's3rvac/vim-syntax-retdecdsm'
 
 " Redmine Wiki Syntax Highlight
 Plugin 's3rvac/vim-syntax-redminewiki'
+
+" YARA Syntax Highlight
+Plugin 's3rvac/vim-syntax-yara'
 
 " badwolf color scheme
 Plugin 'sjl/badwolf'
