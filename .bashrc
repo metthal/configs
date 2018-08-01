@@ -43,11 +43,17 @@ CBoldWhite="\[\033[${Bold};${White}m\]"
 # Show branch in git repository directiories
 source ~/git-prompt.sh
 
+if [ "$(hostname)" = "localhost.localdomain" ]; then
+	PS_HOSTNAME=''
+else
+	PS_HOSTNAME='@\h'
+fi
+
 # Custom shell prompt (red for root, green for other users)
 if [[ $EUID -eq 0 ]]; then
-	PS1="${CBoldRed}\$?${CBoldYellow}\$(__git_ps1) ${CBoldRed}\u ${CBoldCyan}[\w]${CDefault}# "
+	PS1="${CBoldRed}\$?${CBoldYellow}\$(__git_ps1) ${CBoldRed}\u${PS_HOSTNAME} ${CBoldCyan}[\w]${CDefault}# "
 else
-	PS1="${CBoldRed}\$?${CBoldYellow}\$(__git_ps1) ${CBoldGreen}\u ${CBoldCyan}[\w]${CDefault}$ "
+	PS1="${CBoldRed}\$?${CBoldYellow}\$(__git_ps1) ${CBoldGreen}\u${PS_HOSTNAME} ${CBoldCyan}[\w]${CDefault}$ "
 fi
 
 # Custom ls colors
