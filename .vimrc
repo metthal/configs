@@ -266,6 +266,7 @@ hi GitGutterChangeDelete cterm=bold ctermfg=202
 
 " NERDTree settings
 nnoremap <C-e> :NERDTreeToggle<CR>
+let g:NERDTreeIgnore = ['\.pyc$', '^__pycache__$']
 let g:NERDTreeMapActivateNode = '<Enter>'
 
 " vim-grepper settings
