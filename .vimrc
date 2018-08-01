@@ -237,6 +237,7 @@ let g:ycm_warning_symbol = '!!'
 "let g:ycm_goto_buffer_command = 'new-tab'
 let g:ycm_always_populate_location_list = 1
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+let g:ycm_python_binary_path = '/usr/bin/python3'
 hi YcmErrorSign cterm=bold ctermfg=160
 hi YcmWarningSign cterm=bold ctermfg=226
 nnoremap <F2> :YcmCompleter GoToDeclaration<CR>
@@ -256,6 +257,8 @@ let g:gitgutter_sign_modified = '~~'
 let g:gitgutter_sign_removed = '--'
 let g:gitgutter_sign_removed_first_line = '^^'
 let g:gitgutter_sign_modified_removed = '~-'
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_autoclose_preview_window_after_completion = 1
 hi GitGutterChange cterm=bold ctermfg=226
 hi GitGutterAdd cterm=bold ctermfg=118
 hi GitGutterDelete cterm=bold ctermfg=160
