@@ -1,3 +1,9 @@
+" Use Python 3
+let py2=0
+if (py2 == 0 && has('python3'))
+elseif (has('python'))
+endif
+
 " Vundle
 " -----------------------------------------------------------
 set nocompatible              " be iMproved, required
