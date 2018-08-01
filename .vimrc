@@ -149,6 +149,12 @@ autocmd BufNewFile,BufRead *.dsm set filetype=retdecdsm
 " Redmine Wiki syntax for .redmine files
 autocmd BufNewFile,BufRead *.redmine set filetype=redminewiki
 
+" YARA syntax for .yar and .yara files
+autocmd BufNewFile,BufRead *yar,*.yara set filetype=yara
+
+" Dockerfiles
+autocmd BufNewFile,BufRead Dockerfile.* set filetype=dockerfile
+
 " No spell checking in quickfix window
 autocmd FileType qf set nospell
 
