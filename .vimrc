@@ -169,7 +169,7 @@ vnoremap < <gv
 vnoremap > >gv
 
 " Paste and copy pasted text again
-noremap <C-p> p`[V`]y
+noremap <C-p> p`[v`]y
 
 " Page Up & Page Down key bindings
 noremap <C-Down> <PageDown>
