@@ -270,7 +270,9 @@ let g:NERDTreeIgnore = ['\.pyc$', '^__pycache__$']
 let g:NERDTreeMapActivateNode = '<Enter>'
 
 " vim-grepper settings
-let g:grepper = {}
+let g:grepper = {
+	\ 'tools': [ 'ag' ]
+	\ }
 let g:grepper.quickfix = 1
 let g:grepper.highlight = 1
 nnoremap <Leader>/ :Grepper<CR>
