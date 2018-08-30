@@ -104,7 +104,7 @@ extract() {
         *.xz)       xz -dvk $1      ;;
         *.tar)      tar -xvf $1     ;;
         *.zip)      unzip $1        ;;
-        *.rar)      unrar x $1      ;;
+        *.rar)      unrar x "$1"    ;;
         *.7z)       7za x $1        ;;
         *.bz2)      bunzip2 -vk $1  ;;
         *)          echo "Invalid file format" >&2  ;;

@@ -1,7 +1,7 @@
-" Use Python 3
-let py2=0
-if (py2 == 0 && has('python3'))
-elseif (has('python'))
+" This primary enables python3 instead of python2 in vim
+" If we want to use python2 just run vim --cmd 'let py2=1'
+if exists('py2') && has('python')
+elseif has('python3')
 endif
 
 " Vundle
@@ -47,6 +47,9 @@ Plugin 'mhinz/vim-grepper'
 
 " QFEnter - navigation in quickfix window
 Plugin 'yssl/QFEnter'
+
+" Rainbow - rainbow color parentheses
+Plugin 'luochen1990/rainbow'
 
 " RetDec DSM Syntax Highlight
 Plugin 's3rvac/vim-syntax-retdecdsm'
@@ -118,6 +121,9 @@ set nowrap
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
+"set tabstop=2
+"set softtabstop=2
+"set shiftwidth=2
 set smarttab
 set smartindent
 
@@ -128,7 +134,7 @@ set hidden
 set noexpandtab " Use tabs
 
 " Spelling check
-set spell
+" set spell
 set spelllang=en_us,en_gb " English
 "set spelllang=sk " Slovak
 
@@ -238,6 +244,9 @@ let g:ycm_warning_symbol = '!!'
 let g:ycm_always_populate_location_list = 1
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 let g:ycm_python_binary_path = '/usr/bin/python3'
+let g:ycm_rust_src_path = '/home/milkovic/rust-1.28.0/src'
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
 hi YcmErrorSign cterm=bold ctermfg=160
 hi YcmWarningSign cterm=bold ctermfg=226
 nnoremap <F2> :YcmCompleter GoToDeclaration<CR>
@@ -257,8 +266,6 @@ let g:gitgutter_sign_modified = '~~'
 let g:gitgutter_sign_removed = '--'
 let g:gitgutter_sign_removed_first_line = '^^'
 let g:gitgutter_sign_modified_removed = '~-'
-let g:ycm_autoclose_preview_window_after_insertion = 1
-let g:ycm_autoclose_preview_window_after_completion = 1
 hi GitGutterChange cterm=bold ctermfg=226
 hi GitGutterAdd cterm=bold ctermfg=118
 hi GitGutterDelete cterm=bold ctermfg=160
@@ -282,3 +289,9 @@ nnoremap <Leader>c :Grepper -cword -noprompt<CR>
 let g:qfenter_keymap = {}
 let g:qfenter_keymap.open = [ '<CR>' ]
 let g:qfenter_keymap.open_keep = [ '<Leader><CR>' ]
+
+" Rainbow
+let g:rainbow_active = 1
+let g:rainbow_conf = {
+\	'ctermfgs': ['darkblue', 'darkgreen', 'magenta', 'darkred']
+\}
