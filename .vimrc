@@ -51,6 +51,12 @@ Plugin 'yssl/QFEnter'
 " Rainbow - rainbow color parentheses
 Plugin 'luochen1990/rainbow'
 
+" Tagbar - display class outlines using tags
+Plugin 'majutsushi/tagbar'
+
+" Markdown preview
+Plugin 'iamcco/markdown-preview.nvim'
+
 " RetDec DSM Syntax Highlight
 Plugin 's3rvac/vim-syntax-retdecdsm'
 
@@ -59,6 +65,9 @@ Plugin 's3rvac/vim-syntax-redminewiki'
 
 " YARA Syntax Highlight
 Plugin 's3rvac/vim-syntax-yara'
+
+" PowerShell Syntax Highlight
+Plugin 'PProvost/vim-ps1'
 
 " badwolf color scheme
 Plugin 'sjl/badwolf'
@@ -161,6 +170,9 @@ autocmd BufNewFile,BufRead *yar,*.yara set filetype=yara
 " Dockerfiles
 autocmd BufNewFile,BufRead Dockerfile.* set filetype=dockerfile
 
+" SQL files
+autocmd BufNewFile,BufRead *.sql set filetype=mysql
+
 " No spell checking in quickfix window
 autocmd FileType qf set nospell
 
@@ -231,7 +243,7 @@ let g:airline_theme = 'powerlineish'
 " Command-T settings
 nnoremap <C-f> :CommandT<CR>
 nnoremap <C-b> :CommandTBuffer<CR>
-set wildignore+=*/build/*,*/.git/*,*.o,*/doc/*,*/unused/*
+set wildignore+=*/build/*,*/.git/*,*.o,*/doc/*,*/unused/*,*/env/*
 let g:CommandTMaxCachedDirectories = 0
 let g:CommandTMaxHeight = 15
 let g:CommandTTraverseSCM = "pwd"
@@ -295,3 +307,8 @@ let g:rainbow_active = 1
 let g:rainbow_conf = {
 \	'ctermfgs': ['darkblue', 'darkgreen', 'magenta', 'darkred']
 \}
+
+" Tagbar
+let g:tagbar_ctags_bin = '~/bin/ctags-repo/install/bin/ctags'
+let g:tagbar_sort = 0
+nmap . :TagbarToggle<CR>

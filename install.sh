@@ -23,6 +23,17 @@ function download_llvm_archive() {
 	fi
 }
 
+function build_ctags() {
+	pushd ~/bin && \
+	git clone git@github.com:universal-ctags/ctags.git ctags-repo && \
+	pushd ctags && \
+	./autogen.sh && \
+	./configure --prefix=$(realpath ~/bin/ctags-repo/install) && \
+	make -j$(nproc) install && \
+	popd && \
+	popd
+}
+
 function build_command_t() {
 	pushd ~/.vim/bundle/command-t/ruby/command-t/ext/command-t && \
 	ruby extconf.rb && \
@@ -46,8 +57,14 @@ function build_ycm() {
 	popd
 }
 
+function build_markdown_preview() {
+	vim +':call mkdp#util#install()' +qa
+}
+
 if [ -f /etc/fedora-release ]; then
-	sudo dnf install -y cmake curl git gcc make powerline-fonts python3 python3-devel redhat-rpm-config ruby ruby-devel tmux vim
+	curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | sudo tee /etc/yum.repos.d/yarn.repo
+	curl --silent --location https://rpm.nodesource.com/setup_8.x | sudo bash -
+	sudo dnf install -y cmake curl git gcc make powerline-fonts python3 python3-devel redhat-rpm-config ruby ruby-devel tmux vim yarn
 fi
 
 install .bashrc
@@ -61,13 +78,16 @@ download_llvm_archive llvm
 download_llvm_archive cfe
 build_llvm
 
+build_ctags
+
 if [ ! -d ~/.vim/bundle/Vundle.vim ]; then
 	git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 fi
 
 vim --clean +'silent! source ~/.vimrc' +PluginInstall +PluginUpdate +qa && \
 build_command_t && \
-build_ycm
+build_ycm && \
+build_markdown_preview
 
 if [ ! -d ~/.tmux/plugins/tpm ]; then
 	git clone https://github.com/tmux-plugins/tpm.git ~/.tmux/plugins/tpm
