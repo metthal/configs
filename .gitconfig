@@ -12,6 +12,7 @@
 	undo = reset HEAD^
 	unstage = reset HEAD
 	push = push --recurse-submodules=check
+	pa = !git pull && git submodule update --init
 [push]
 	default = simple
 [merge]

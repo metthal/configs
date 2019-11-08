@@ -39,8 +39,8 @@ Plugin 'airblade/vim-gitgutter'
 " NERDTree - whole directory structure
 Plugin 'scrooloose/nerdtree'
 
-" Command-T - fuzzy opening of files
-Plugin 'wincent/command-t'
+" ctrlp.vim - fuzzy opening of files
+Plugin 'ctrlpvim/ctrlp.vim'
 
 " vim-grepper - integration with searching in files
 Plugin 'mhinz/vim-grepper'
@@ -139,13 +139,19 @@ set smartindent
 " Allow switching between buffers when changes are unsaved
 set hidden
 
+" Search while typing
+set incsearch
+
 "set expandtab " Use spaces
 set noexpandtab " Use tabs
 
 " Spelling check
 " set spell
-set spelllang=en_us,en_gb " English
+"set spelllang=en_us,en_gb " English
 "set spelllang=sk " Slovak
+
+" Show possible files when doing filename autocompletion
+set wildmenu
 
 " Just underline when spelling error is found
 hi clear SpellBad
@@ -205,8 +211,6 @@ set list
 set listchars=tab:>-,trail:.
 
 " Highlight current line number
-set cursorline
-hi clear CursorLine
 hi CursorLineNR ctermfg=226
 
 " Shortcuts for hex-edit
@@ -240,19 +244,13 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 1
 let g:airline_theme = 'powerlineish'
 
-" Command-T settings
-nnoremap <C-f> :CommandT<CR>
-nnoremap <C-b> :CommandTBuffer<CR>
-set wildignore+=*/build/*,*/.git/*,*.o,*/doc/*,*/unused/*,*/env/*
-let g:CommandTMaxCachedDirectories = 0
-let g:CommandTMaxHeight = 15
-let g:CommandTTraverseSCM = "pwd"
+" ctrlp settings
+set wildignore+=*/env/*,*/build/*,*/__pycache__/*,*/site-packages/*
 
 " YouCompleteMe settings
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_error_symbol = '>>'
 let g:ycm_warning_symbol = '!!'
-"let g:ycm_goto_buffer_command = 'new-tab'
 let g:ycm_always_populate_location_list = 1
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 let g:ycm_python_binary_path = '/usr/bin/python3'
@@ -305,7 +303,10 @@ let g:qfenter_keymap.open_keep = [ '<Leader><CR>' ]
 " Rainbow
 let g:rainbow_active = 1
 let g:rainbow_conf = {
-\	'ctermfgs': ['darkblue', 'darkgreen', 'magenta', 'darkred']
+\	'ctermfgs': ['darkblue', 'darkgreen', 'magenta', 'darkred'],
+\	'separately': {
+\		'cmake': 0
+\	}
 \}
 
 " Tagbar
